@@ -79,7 +79,7 @@ mse
 
 
 plt.scatter(Y_test, Y_pred)
-#sns.regplot(Y_test, Y_pred)
+#sns.regplot(x=Y_test, y=Y_pred)
 plt.xlabel("Actual prices")
 plt.ylabel("Predicted prices")
 plt.show()
