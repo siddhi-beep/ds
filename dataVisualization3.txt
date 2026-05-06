@@ -1,0 +1,52 @@
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+
+
+df= pd.read_csv('Iris.csv')
+
+
+
+df.head()
+
+
+df.tail()
+
+df.info()
+
+
+
+#features and their type
+df.dtypes
+
+
+
+df=df.drop('Id', axis=1)
+df.hist(figsize=(8,6))
+plt.suptitle("histogram")
+plt.show()
+
+
+sns.boxplot(data=df)
+plt.title('boxplot')
+plt.show()
+
+
+df.columns
+
+
+sns.boxplot(x='Species', y='SepalLengthCm', data=df)
+plt.show()
+
+
+sns.boxplot(x='Species', y='SepalWidthCm', data=df)
+plt.show()
+
+
+
+sns.boxplot(x='Species', y='PetalLengthCm', data=df)
+plt.show()
+
+

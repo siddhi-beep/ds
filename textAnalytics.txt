@@ -1,0 +1,64 @@
+
+import nltk
+
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk import pos_tag
+
+
+text= "Machine learning is very interesting and useful for data analysis."
+
+
+tokens=word_tokenize(text)
+print(tokens)
+
+
+
+pos= pos_tag(tokens)
+print(pos)
+
+
+stop_words= set( stopwords.words('english'))
+filtered= [ w for w in tokens if w.lower() not in stop_words]
+print("After stop word removal:", filtered)
+
+
+
+ps= PorterStemmer()
+stemmed= [ps.stem(w) for w in filtered]
+print("Stemmed words:", stemmed)
+
+
+lm= WordNetLemmatizer()
+lemmatized= [lm.lemmatize(w) for w in filtered]
+print(lemmatized)
+
+
+
+from sklearn.feature_extraction.text import CountVectorizer
+doc = [
+  "machine learning is fun",
+  "learning is powerful"
+]
+cv = CountVectorizer()
+tf= cv.fit_transform(doc)
+print(cv.get_feature_names_out())
+
+
+print(tf.toarray())
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf= TfidfVectorizer()
+result= tfidf.fit_transform(doc)
+print("words:",tfidf.get_feature_names_out())
+print("TF-IDF:",result.toarray())

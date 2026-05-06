@@ -1,0 +1,64 @@
+
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df= pd.read_csv('Titanic-Dataset.csv')
+df
+
+
+df.info()
+
+
+
+df.describe()
+
+
+
+df.isnull().sum()
+#df1=df.dropna()
+#df['Age'].fillna(df['Age'].median(), inplace=True)
+
+
+
+
+df.columns
+
+
+
+sns.countplot(x='Survived', data= df)
+plt.title("Survived count")
+plt.show()
+
+
+
+sns.countplot(x='Sex' , data=df)
+plt.title('sex count')
+plt.show()
+
+
+sns.countplot( x='Sex', hue='Survived', data= df)
+plt.title('Survival based on Gender')
+plt.show()
+
+
+
+sns.countplot( x='Pclass', hue='Survived', data= df)
+plt.title('Survival based on Passenger class')
+plt.show()
+
+
+sns.boxplot(x='Sex', y='Age', data=df)
+plt.show()
+
+
+
+plt.figure(figsize=(5,4))
+sns.histplot( df['Fare'], bins=30)
+plt.title('Fare distribution')
+plt.xlabel('fare')
+plt.ylabel('Count')
+plt.show()
+

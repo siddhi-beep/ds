@@ -1,0 +1,85 @@
+
+
+import pandas as pd
+import numpy as np
+
+
+
+data={
+    'Name':['A','B','C','D','E','f','G','H'],
+    'Maths':[85,90,np.nan,77,58,81,69,78],
+    'Science':[88,91,55,np.nan,70,56,66,110],
+    'English':[56,51,99,77,89,np.nan,77,88],
+    'Attendance':[90,95,85,60,105,80,np.nan,88]
+}
+
+df=pd.DataFrame(data)
+
+
+
+df
+
+
+
+df.describe()
+
+
+
+df.dtypes
+
+
+
+
+df.isnull().sum()
+
+
+
+df['Maths']= df['Maths'].fillna(df['Maths'].mean())
+df['Science']= df['Science'].fillna(df['Science'].mean())
+df['English']= df['English'].fillna(df['English'].mean())
+df['Attendance']= df['Attendance'].fillna(df['Attendance'].mean())
+
+
+
+
+df
+
+
+
+df.isnull().sum()
+
+df['Maths']= np.where(df['Maths']>100, 100, df['Maths'])
+df['Science']= np.where(df['Science']>100, 100, df['Science'])
+df['Attendance']= np.where(df['Attendance']>100, 100, df['Attendance'])
+
+df
+
+
+Q1= df['Maths'].quantile(0.25)
+Q3= df['Maths'].quantile(0.75)
+IQR= Q3-Q1
+lower= Q1-1.5*IQR
+upper=Q3+1.5*IQR
+
+outliers= df[(df['Maths']<lower) | (df['Maths']> upper)]
+
+
+
+outliers
+
+
+df['Maths_log']= np.log(df["Maths"])
+
+
+df
+
+
+df['Science']= (df['Science']- df['Science'].min())/(df['Science'].max()- df['Science'].min())
+
+
+df
+
+
+
+df.describe()
+

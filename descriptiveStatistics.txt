@@ -1,0 +1,48 @@
+
+
+import pandas as pd
+
+
+
+df= pd.read_csv('Iris.csv')
+
+
+
+df
+
+
+
+grouped= df.groupby('Species')
+
+
+
+
+print(df.columns)
+
+
+
+grouped[['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']].agg(['mean', 'median','min', 'max' ,'std'])
+
+
+setosa = df[ df['Species']== 'Iris-setosa']['SepalLengthCm'].tolist()
+
+
+setosa
+
+
+versicolor = df[ df['Species'] =='Iris-versicolor']['SepalLengthCm'].tolist()
+
+
+
+df.groupby('Species').describe()
+
+
+
+df.groupby(['Species']).count()
+
+
+
+
+df.SepalLengthCm.min()
+
+

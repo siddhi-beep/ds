@@ -1,0 +1,48 @@
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+
+df= pd.read_csv('Titanic-Dataset.csv')
+df
+
+
+
+df.head()
+
+
+
+df['Age'].fillna(df['Age'].median(), inplace= True)
+
+
+
+df.isnull().sum()
+
+
+
+plt.figure(figsize=(6,4))
+sns.boxplot(x='Sex', y='Age', hue='Survived',data= df)
+plt.title('Age distribution by Gender and servival')
+plt.xlabel("gender")
+plt.ylabel("Age")
+plt.show()
+
+
+
+sns.boxplot(x='Sex', y='Age', data=df)
+plt.show()
+
+
+
+sns.countplot(x='Survived', data= df)
+plt.title("Survived count")
+plt.show()
+
+
+
+sns.countplot( x='Sex', hue='Survived', data= df)
+plt.title('Survival based on Gender')
+plt.show()
+
